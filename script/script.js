@@ -6,6 +6,15 @@
 $(document).ready(function () {
 
     var button=$('#button');
+    var button2=$('#button2');
+
+   button2.on('click',function(){
+       var divMain=$('#content');
+var i=0;
+      setInterval(function count(){i=i+1;var newNumber = $('<span>' + i + '</span>');
+      divMain.append(newNumber);},2000);
+
+   });
 
 button.on('click',function (){
     var request = {};
@@ -13,9 +22,11 @@ button.on('click',function (){
     var divMain2=$('#content2');
     var triggerCount= 0;
 
-    for (var i=1; i <= 10; i++) {
-        request.action_id = i;
+    var i=0;
 
+    setInterval (function(){
+        i=i+1;
+        request.action_id = i;
             $.ajax({
                 url: 'index.php',
                 type: 'POST',
@@ -44,16 +55,22 @@ button.on('click',function (){
                                case 1:{
                                    if (divMain.hasClass('three')) {divMain.removeClass('three');}
                                    divMain.addClass('one');
+                                   if (divMain2.hasClass('three')) {divMain2.removeClass('three');}
+                                   divMain2.addClass('one');
                                }
                                    break;
                                case 2:{
                                    divMain.removeClass('one');
                                    divMain.addClass('two');
+                                   divMain2.removeClass('one');
+                                   divMain2.addClass('two');
                                }
                                    break;
                                case 0:{
                                    divMain.removeClass('two');
-                                   divMain.addClass('one');
+                                   divMain.addClass('three');
+                                   divMain2.removeClass('two');
+                                   divMain2.addClass('three');
                                }
                                    break;
                            }
@@ -76,10 +93,7 @@ button.on('click',function (){
                 }
             });
 
-
-
-        console.log('the end');
-    }
+    },1000);
 
 });
 
