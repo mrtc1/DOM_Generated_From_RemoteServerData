@@ -9,7 +9,11 @@ $(document).ready(function () {
 
 button.on('click',function (){
     var request = {};
-    for (var i=1; i <= 20; i++) {
+    var divMain=$('#content');
+    var divMain2=$('#content2');
+    var triggerCount= 0;
+
+    for (var i=1; i <= 10; i++) {
         request.action_id = i;
 
             $.ajax({
@@ -17,8 +21,50 @@ button.on('click',function (){
                 type: 'POST',
                 data: request,
                 success: function (element) {
-                    console.log('dziala');
-                    console.log(element);
+
+                    var obj = jQuery.parseJSON(element);
+                    //console.log(obj);
+                   switch (obj.type){
+                       case 'display':{
+                           var data = obj.data;
+                           var newH1=$('<h1>'+ data["div.first"].h1.text_contents+'</h1>');
+                           var newP=$('<p>'+ data["div.first"].p.text_contents+'</p>');
+                           var newSpan=$('<span>'+ data["div.second"].span.span.text_contents+'</span>');
+                           var newB=$('<b>'+ data["div.second"].b.text_contents+'</b>');
+                           divMain.append(newH1);
+                           divMain.append(newP);
+                           divMain2.append(newSpan);
+                           divMain2.append(newB);
+                       }
+
+                           break;
+                       case 'trigger':{
+                           triggerCount=triggerCount+1;
+                           switch(triggerCount%3){
+                               case 1:{
+                                   if (divMain.hasClass('three')) {divMain.removeClass('three');}
+                                   divMain.addClass('one');
+                               }
+                                   break;
+                               case 2:{
+                                   divMain.removeClass('one');
+                                   divMain.addClass('two');
+                               }
+                                   break;
+                               case 0:{
+                                   divMain.removeClass('two');
+                                   divMain.addClass('one');
+                               }
+                                   break;
+                           }
+
+                       }
+
+                           break;
+                       case 'null':
+                       console.log('null');
+                           break;
+                       }
                 },
                 error: function (xhr, status, errorThrown) {
                     console.log('error error');
@@ -29,6 +75,8 @@ button.on('click',function (){
                     console.log(status);
                 }
             });
+
+
 
         console.log('the end');
     }
