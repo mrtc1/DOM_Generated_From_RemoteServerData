@@ -6,15 +6,7 @@
 $(document).ready(function () {
 
     var button=$('#button');
-    var button2=$('#button2');
 
-   button2.on('click',function(){
-       var divMain=$('#content');
-var i=0;
-      setInterval(function count(){i=i+1;var newNumber = $('<span>' + i + '</span>');
-      divMain.append(newNumber);},2000);
-
-   });
 
 button.on('click',function (){
     var request = {};
@@ -42,6 +34,10 @@ button.on('click',function (){
                            var newP=$('<p>'+ data["div.first"].p.text_contents+'</p>');
                            var newSpan=$('<span>'+ data["div.second"].span.span.text_contents+'</span>');
                            var newB=$('<b>'+ data["div.second"].b.text_contents+'</b>');
+                           divMain.find('h1').remove();
+                           divMain.find('p').remove();
+                           divMain2.find('span').remove();
+                           divMain2.find('b').remove();
                            divMain.append(newH1);
                            divMain.append(newP);
                            divMain2.append(newSpan);
@@ -84,7 +80,7 @@ button.on('click',function (){
                        }
                 },
                 error: function (xhr, status, errorThrown) {
-                    console.log('error error');
+                    console.log('error');
                     console.log(status);
                 },
                 complete: function (xhr, status) {
@@ -93,7 +89,7 @@ button.on('click',function (){
                 }
             });
 
-    },1000);
+    },800);
 
 });
 
