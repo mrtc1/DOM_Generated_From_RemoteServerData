@@ -2,21 +2,16 @@
 generating DOM from server (through AJAX)
 Script is dowloading JSON data from remote server and showing HTML to the user. 
 
- Aby otrzymać obiekt akcji, należy wysłać ID akcji do serwera metodą POST. Identyfikator akcji
-powinien być iterowany od 1 do 9000, gdzie 9000 to ostatnia akcja do obsłużenia.
-Rodzaje akcji do obsłużenia:
+In order to receive action object, you need to sent action ID to the server using POST method. Id should be iterated from 1 to 9000, where 9000 is the last action to serve. 
+ <br>
+Action types:
 <br>
 <br>
-<b>display:</b> celem akcji jest wyświetlenie użytkownikowi w centralnym miejscu okna przeglądarki (w pionie i poziomie) zawartości HTML przesłanej w obiekcie JSON (zawartość ‘data’)
+<b>display:</b> The aim is to display to the user in the middle of the viewportv HTML content sent in JSON object. 
 <br>
 <br>
-<b>trigger:</b> celem akcji jest wykonanie operacji na pobranej wcześniej zawartości w akcji
-„display” mającej na celu uruchomienie styli CSS zmieniających wygląd zawartości widocznej
-dla użytkownika – w tym celu należy przygotować 3 przykładowe zestawy styli CSS, zmieniające zupełnie wygląd zawartości (musi zmienić się: typ czcionki, wielkość czcionki,
-kolor czcionki oraz tła poszczególnych elementów zawartości, wszystkie wartości muszą być
-unikalne dla każdego elementu z osobna w każdym z 3 wariantów styli CSS),
+<b>trigger:</b> The aim is to operate on the previously downoladed content (in the 'display' action). Operation should run adequate CSS changing the way the content looks – in order to do that I've prepared 3 types of unique CSS styles.
 <br>
 <br>
-<b>null:</b> akcja nie realizująca żadnej funkcjonalności, otrzymanie jej z serwera nie wykonuje
-żadnej operacji na danych i/lub zawartości widocznej dla użytkownika.
+<b>null:</b> action with no functionality. Recieving it from the server do not change the content nor the style of it.
 
